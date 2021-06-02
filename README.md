@@ -1,4 +1,4 @@
 # github-actions-study
 学习GitHub Actions
 
-v0.1.5
+v0.1.6
