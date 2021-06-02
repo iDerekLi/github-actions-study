@@ -1,7 +1,7 @@
 name: Release
 on:
-  push:
-    tags: ["v*"]
+  release:
+    types: [published]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
