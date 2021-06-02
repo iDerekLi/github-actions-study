@@ -6,6 +6,8 @@ jobs:
   masterb:
     runs-on: ubuntu-latest
     steps:
-      - name: push master
-        run: git push origin master
+      - run: git checkout main
+      - run: git merge dev
+      - name: push main
+        run: git push origin main
 
