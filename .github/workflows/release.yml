@@ -12,6 +12,7 @@ jobs:
         run: |
           git config --global user.email "lideyu888@163.com"
           git config --global user.name "DerekLi"
+          git checkout -b dev
           git add .
           git commit -m "ci:push"
           git push main
