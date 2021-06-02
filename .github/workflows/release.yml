@@ -6,12 +6,10 @@ jobs:
   masterb:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出项目
-          uses: actions/checkout@v2
-      - name: 推送
-          run: |
-            ls ${{ github.workspace }}
-      - run: |
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: push
+        run: |
           git add .
           git commit -m "ci:push"
           git push main
