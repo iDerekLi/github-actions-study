@@ -6,6 +6,23 @@ jobs:
   masterb:
     runs-on: ubuntu-latest
     steps:
-      - name: push master
-        run: git push origin master
-
+      - uses: actions/checkout@v2
+        with:
+          ref: "main"
+      - name: Set committer
+        run: |
+          git config user.name "Babel Bot"
+          git config user.email "babel-bot@users.noreply.github.com"
+      - name: Show everthing
+        run: |
+          git remote -v
+          git branch -a
+      - name: Switch to branch 'main'
+        run: |
+          git pull
+          git pull origin dev
+      - name: Push
+        run: |
+          git add .
+          git commit -m "ci:push"
+          git push origin main
