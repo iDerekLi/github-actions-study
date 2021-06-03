@@ -47,12 +47,15 @@ jobs:
         run: |
           git config user.name "Derek Li"
           git config user.email "lideyu888@163.com"
-      - name: List files
+      - name: List files start
         run: |
           ls ${{ github.workspace }}
-#      - name: Files change
-#        run: |
-#          touch temp_web.txt
+      - run: touch temp_web3.txt
+      - name: Deploy
+        uses: ./.github/actions/deploy-pages
+      - name: List files end
+        run: |
+          ls ${{ github.workspace }}
       - name: Push origin
         run: |
           if [ -n "$(git status -s)" ];then
