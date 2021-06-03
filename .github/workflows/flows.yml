@@ -1,5 +1,7 @@
 name: Flows
-on: [push]
+on:
+  branches:
+    - dev
 env:
   GLOBAL_ENV: globalenv
   GIT_USER_NAME: Derek Li
@@ -50,6 +52,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
+      - name: Run Yarn
+        run: yarn -v
 #  delpoy:
 #    runs-on: ubuntu-latest
 #    steps:
