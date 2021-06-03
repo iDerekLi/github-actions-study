@@ -1,29 +1,31 @@
 name: Flows
 on: [push]
 jobs:
-#  demo-actions:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Outputs
-#        run: |
-#          echo "===== [Runner] ====="
-#          echo "os: ${{ runner.os }}"
-#          echo "===== [GitHub] ====="
-#          echo "event_name: ${{ github.event_name }}"
-#          echo "ref: ${{ github.ref }}"
-#          echo "repository: ${{ github.repository }}"
-#          echo "workspace: ${{ github.workspace }}"
-#          echo "===== [Job] ====="
-#          echo "status: ${{ job.status }}"
-#      - name: Check out repository code
-#        uses: actions/checkout@v2
-#      - name: List files in the repository
-#        run: |
-#          ls ${{ github.workspace }}
-  delpoy-test:
+  demo-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: Outputs
+        run: |
+          echo "===== [Runner] ====="
+          echo "os: ${{ runner.os }}"
+          echo "===== [GitHub] ====="
+          echo "event_name: ${{ github.event_name }}"
+          echo "ref: ${{ github.ref }}"
+          echo "repository: ${{ github.repository }}"
+          echo "workspace: ${{ github.workspace }}"
+          echo "===== [Job] ====="
+          echo "status: ${{ job.status }}"
+          echo "===== [Secrets] ====="
+          echo "var git.user.name: ${{ secrets.GIT_USER_NAME }}"
       - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+  delpoy-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
         uses: actions/checkout@v2
         with:
           ref: "test"
@@ -31,19 +33,15 @@ jobs:
         run: |
           git config user.name "Derek Li"
           git config user.email "lideyu888@163.com"
-      - name: List files in the repository
+      - name: List files
         run: |
           ls ${{ github.workspace }}
-      - name: Push
+      - name: Files change
         run: |
           touch temp_web.txt
-      - name: List files in the repository
+      - name: Push origin
         run: |
-          ls ${{ github.workspace }}
-      - name: Push
-        run: |
-          git add .
-          git status
+          git add -A .
           git commit -m "deploy"
           git push origin test
 
