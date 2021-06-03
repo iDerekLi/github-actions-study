@@ -38,7 +38,7 @@ jobs:
           ls ${{ github.workspace }}
       - name: Files change
         run: |
-          touch temp_web.txt
+          touch temp_web1.txt
       - name: Push origin
         run: |
           git add -A .
