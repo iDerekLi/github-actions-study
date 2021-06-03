@@ -12,6 +12,9 @@ jobs:
         run: |
           git config user.name "Babel Bot"
           git config user.email "babel-bot@users.noreply.github.com"
+      - name: Show remote
+        run: |
+          git remote -v
       - name: Switch to branch 'main'
         run: |
           git checkout -b main origin/main
