@@ -38,8 +38,6 @@ jobs:
         shell: bash
   git-actions:
     runs-on: ubuntu-latest
-    env:
-      JOB_ENV: jobenv
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -47,9 +45,10 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Local action
-        uses: ./.github/actions/hello-action1
-        with:
-          who-to-greet: 'HEllO'
+        uses: ./.github/actions/deploy-pages
+      - name: List files
+        run: |
+          ls ${{ github.workspace }}
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
 #  delpoy:
 #    runs-on: ubuntu-latest
