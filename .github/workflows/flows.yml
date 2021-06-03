@@ -25,7 +25,6 @@ jobs:
           echo "var git.user.name: ${{ secrets.GIT_USER_NAME }}"
           echo "===== [Env] ====="
           echo "global: ${{ env.GLOBAL_ENV }}"
-          echo "job: ${{ jobs.demo-actions.env.JOB_ENV }}"
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
