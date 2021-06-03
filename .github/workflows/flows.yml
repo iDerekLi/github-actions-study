@@ -31,7 +31,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - id: foo
-        uses: actions/action
+        uses: ./.github/actions/hello-action
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
