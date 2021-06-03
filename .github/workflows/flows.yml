@@ -30,6 +30,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Set committer
+        run: |
+          git config user.name "Derek Li"
+          git config user.email "lideyu888@163.com"
       - name: Push
         run: |
           mkdir temp_web
