@@ -39,6 +39,8 @@ jobs:
   delpoy:
     runs-on: ubuntu-latest
     steps:
+      - id: deploy
+        uses: ./.github/actions/deploy-pages
       - name: Checkout repository code
         uses: actions/checkout@v2
         with:
@@ -51,8 +53,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: touch temp_web3.txt
-      - id: deploy
-        uses: ./.github/actions/deploy-pages
       - name: List files end
         run: |
           ls ${{ github.workspace }}
