@@ -1,8 +1,14 @@
 name: Flows
 on: [push]
+env:
+  GLOBAL_ENV: globalenv
+  GIT_USER_NAME: Derek Li
+  GIT_USER_EMAIL: lideyu888@163.com
 jobs:
   demo-actions:
     runs-on: ubuntu-latest
+    env:
+      JOB_ENV: jobenv
     steps:
       - name: Outputs
         run: |
@@ -17,6 +23,9 @@ jobs:
           echo "status: ${{ job.status }}"
           echo "===== [Secrets] ====="
           echo "var git.user.name: ${{ secrets.GIT_USER_NAME }}"
+          echo "===== [Env] ====="
+          echo "global: ${{ env.GLOBAL_ENV }}"
+          echo "job: ${{ jobs.env.JOB_ENV }}"
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
@@ -36,12 +45,16 @@ jobs:
       - name: List files
         run: |
           ls ${{ github.workspace }}
-      - name: Files change
-        run: |
-          touch temp_web1.txt
+#      - name: Files change
+#        run: |
+#          touch temp_web.txt
       - name: Push origin
         run: |
-          git add -A .
-          git commit -m "deploy"
-          git push origin test
+          if [ -n "$(git status -s)" ];then
+              git add -A .
+              git commit -m "deploy"
+              git push origin master
+          else
+            echo "files unchanged"
+          fi
 
