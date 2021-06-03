@@ -36,7 +36,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
-  delpoy-pages:
+  delpoy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
@@ -51,7 +51,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: touch temp_web3.txt
-      - name: Deploy
+      - id: deploy
         uses: ./.github/actions/deploy-pages
       - name: List files end
         run: |
