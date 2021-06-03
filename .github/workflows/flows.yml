@@ -39,8 +39,6 @@ jobs:
   delpoy:
     runs-on: ubuntu-latest
     steps:
-      - id: deploy
-        uses: ./.github/actions/deploy-pages
       - name: Checkout repository code
         uses: actions/checkout@v2
         with:
@@ -53,6 +51,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: touch temp_web3.txt
+      - id: foo
+        uses: ./.github/actions/hello-action
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
       - name: List files end
         run: |
           ls ${{ github.workspace }}
