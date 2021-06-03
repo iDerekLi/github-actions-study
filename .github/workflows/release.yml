@@ -6,14 +6,16 @@ jobs:
   masterb:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: push
+      - name: Set committer
         run: |
-          git config --global user.email "lideyu888@163.com"
-          git config --global user.name "DerekLi"
+          git config user.name "Babel Bot"
+          git config user.email "babel-bot@users.noreply.github.com"
+      - name: Push
+        run: |
           git checkout -b dev
           git add .
           git commit -m "ci:push"
-          git push main
+          git push origin main
 
