@@ -8,21 +8,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: "main"
+          ref: "test"
       - name: Set committer
         run: |
-          git config user.name "Babel Bot"
-          git config user.email "babel-bot@users.noreply.github.com"
-      - name: Show everthing
-        run: |
-          git remote -v
-          git branch -a
-      - name: Switch to branch 'main'
-        run: |
-          git pull
-          git pull origin dev
+          git config user.name "DerekLi"
+          git config user.email "lideyu888@163.com"
+      - run: git remote -v
+      - run: git branch -a
+      - name: List files in the repository
+          run: |
+            ls ${{ github.workspace }}
       - name: Push
         run: |
+          mkdir temp_web
           git add .
           git commit -m "ci:push"
-          git push origin main
+          git push origin test
