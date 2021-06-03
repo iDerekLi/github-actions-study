@@ -14,7 +14,7 @@ jobs:
           git config user.email "babel-bot@users.noreply.github.com"
       - name: Push
         run: |
-          git checkout -b dev
+          git pull origin dev
           git add .
           git commit -m "ci:push"
           git push origin main
