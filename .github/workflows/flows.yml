@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Outputs
-      - run: |
+        run: |
           echo "===== [Runner] ====="
           echo "os: ${{ runner.os }}"
           echo "===== [GitHub] ====="
