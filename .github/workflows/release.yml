@@ -19,6 +19,7 @@ jobs:
           git branch -a
       - name: Switch to branch 'main'
         run: |
+          git pull
           git pull origin dev
       - name: Push
         run: |
