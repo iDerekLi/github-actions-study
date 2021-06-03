@@ -7,6 +7,7 @@ env:
 jobs:
   demo-actions:
     runs-on: ubuntu-latest
+    id: demoactions
     env:
       JOB_ENV: jobenv
     steps:
@@ -25,7 +26,7 @@ jobs:
           echo "var git.user.name: ${{ secrets.GIT_USER_NAME }}"
           echo "===== [Env] ====="
           echo "global: ${{ env.GLOBAL_ENV }}"
-          echo "job: ${{ jobs.env.JOB_ENV }}"
+          echo "job: ${{ jobs.demoactions.env.JOB_ENV }}"
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
@@ -55,6 +56,6 @@ jobs:
               git commit -m "deploy"
               git push origin master
           else
-            echo "files unchanged"
+            echo "nothing to commit, working tree clean"
           fi
 
