@@ -36,13 +36,14 @@ jobs:
           ls ${{ github.workspace }}
       - name: Push
         run: |
-          mkdir temp_web
+          touch temp_web.txt
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
       - name: Push
         run: |
           git add .
+          git status
           git commit -m "deploy"
           git push origin test
 
