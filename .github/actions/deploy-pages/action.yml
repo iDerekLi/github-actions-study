@@ -4,6 +4,8 @@ runs:
   using: "composite"
   steps:
     - run: touch temp_web4.txt
+      shell: bash
     - name: List files ing
       run: |
         ls ${{ github.workspace }}
+      shell: bash
