@@ -42,7 +42,7 @@ jobs:
           ls ${{ github.workspace }}
       - name: Push
         run: |
-          git add -A .
+          git add .
           git commit -m "deploy"
           git push origin test
 
