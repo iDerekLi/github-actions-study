@@ -1,0 +1,15 @@
+name: Demo Actions
+on: [push]
+jobs:
+  Demo-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          ref: "test"
+      - run: echo "💡 The ${{ github.repository }} "
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "${{ job.status }}."
