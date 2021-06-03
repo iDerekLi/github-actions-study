@@ -1,25 +1,25 @@
 name: Flows
 on: [push]
 jobs:
-  demo-actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Outputs
-        run: |
-          echo "===== [Runner] ====="
-          echo "os: ${{ runner.os }}"
-          echo "===== [GitHub] ====="
-          echo "event_name: ${{ github.event_name }}"
-          echo "ref: ${{ github.ref }}"
-          echo "repository: ${{ github.repository }}"
-          echo "workspace: ${{ github.workspace }}"
-          echo "===== [Job] ====="
-          echo "status: ${{ job.status }}"
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+#  demo-actions:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Outputs
+#        run: |
+#          echo "===== [Runner] ====="
+#          echo "os: ${{ runner.os }}"
+#          echo "===== [GitHub] ====="
+#          echo "event_name: ${{ github.event_name }}"
+#          echo "ref: ${{ github.ref }}"
+#          echo "repository: ${{ github.repository }}"
+#          echo "workspace: ${{ github.workspace }}"
+#          echo "===== [Job] ====="
+#          echo "status: ${{ job.status }}"
+#      - name: Check out repository code
+#        uses: actions/checkout@v2
+#      - name: List files in the repository
+#        run: |
+#          ls ${{ github.workspace }}
   delpoy-test:
     runs-on: ubuntu-latest
     steps:
@@ -27,16 +27,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "test"
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
       - name: Set committer
         run: |
           git config user.name "Derek Li"
           git config user.email "lideyu888@163.com"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
       - name: Push
         run: |
           mkdir temp_web
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Push
+        run: |
           git add -A .
           git commit -m "deploy"
           git push origin test
+
