@@ -16,8 +16,8 @@ jobs:
       - run: git remote -v
       - run: git branch -a
       - name: List files in the repository
-          run: |
-            ls ${{ github.workspace }}
+        run: |
+          ls ${{ github.workspace }}
       - name: Push
         run: |
           mkdir temp_web
