@@ -39,9 +39,6 @@ jobs:
           who-to-greet: 'HEllO'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
-      - name: verify cross-env
-        run:
-
   git-actions:
     runs-on: ubuntu-latest
     steps:
