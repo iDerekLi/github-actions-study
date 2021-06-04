@@ -47,10 +47,19 @@ jobs:
       - name: List files
         run: |
           ls ${{ github.workspace }}
-      - name: Local action
-        uses: ./.github/actions/deploy-pages
+      - name: Create DIR
+        run: |
+          mkdir temp_dir
+          cd temp_dir
+      - name: Checkout repository code
+        uses: actions/checkout@v2
+        with:
+          ref: "test"
       - name: List files
         run: |
+          ls ${{ github.workspace }}
+          echo "========"
+          cd github-actions-study
           ls ${{ github.workspace }}
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
       - name: Run Yarn Install
@@ -58,7 +67,7 @@ jobs:
       - name: Export ENV
         run: |
           node main.js
-          export Version="123" && node main.js
+          export ENV="123" && node main.js
           node main.js
       - name: Cross ENV
         run: cross-env CROS_E="cros-env" node main.js
