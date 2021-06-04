@@ -56,7 +56,10 @@ jobs:
       - name: Run Yarn Install
         run: yarn
       - name: Export ENV
-        run: export Dev="123" && node main.js
+        run: |
+          node main.js
+          export Version="123" && node main.js
+          node main.js
       - name: Cross ENV
         run: cross-env CROS_E="cros-env" node main.js
 #  delpoy:
