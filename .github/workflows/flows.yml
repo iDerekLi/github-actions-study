@@ -54,7 +54,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
       - name: Cross Run Yarn
-        run: export Dev="123" yarn -v
+        run: export Dev="123" && node main.js
       - name: Run Yarn
         run: yarn -v
 #  delpoy:
