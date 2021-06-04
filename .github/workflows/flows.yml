@@ -25,7 +25,7 @@ jobs:
           echo "===== [Job] ====="
           echo "status: ${{ job.status }}"
           echo "===== [Secrets] ====="
-          echo "var git.user.name: ${{ secrets.GIT_USER_NAME }}"
+          echo "secret npm_token: ${{ secrets.npm_token }}"
           echo "===== [Env] ====="
           echo "global: ${{ env.GLOBAL_ENV }}"
       - name: Check out repository code
@@ -42,35 +42,13 @@ jobs:
   git-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
       - name: List files
         run: |
           ls ${{ github.workspace }}
-      - name: Create DIR
-        run: |
-          mkdir temp_dir
-          cd temp_dir
-      - name: Checkout repository code
-        uses: actions/checkout@v2
-        with:
-          ref: "test"
-      - name: List files
-        run: |
-          ls ${{ github.workspace }}
-          echo "========"
-          cd github-actions-study
-          ls ${{ github.workspace }}
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-      - name: Run Yarn Install
-        run: yarn
-      - name: Export ENV
-        run: |
-          node main.js
-          export ENV="123" && node main.js
-          node main.js
       - name: Cross ENV
-        run: cross-env CROS_E="cros-env" node main.js
+        run: cross-env Version="cros-env" node main.js
 #  delpoy:
 #    runs-on: ubuntu-latest
 #    steps:
